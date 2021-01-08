@@ -81,10 +81,8 @@ install() {
     inst_script /usr/libexec/coreos-cryptfs
     inst_script /usr/libexec/coreos-growpart
     inst_script /usr/libexec/coreos-cryptlib
+    inst_script /usr/libexec/rhcos-upgrade-root-filesystem-container
 
-    # Service for first-boot encryption.
-    inst_simple "$moddir/coreos-luks-open.service" "$systemdsystemunitdir/coreos-luks-open.service"
-    # The generator enables the opening service.
-    inst_simple "$moddir/coreos-luks-generator" \
-        "$systemdutildir/system-generators/coreos-luks-generator"
+    # Service for updating legacy encryption layout
+    inst_simple "$moddir/rhcos-upgrade-root-filesystem-container.service" "$systemdsystemunitdir/rhcos-upgrade-root-filesystem-container.service"
 }
